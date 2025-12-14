@@ -1,0 +1,55 @@
+# ------------------------
+# FastAPI & Server
+# ------------------------
+fastapi
+uvicorn[standard]
+
+# ------------------------
+# Environment & Settings
+# ------------------------
+pydantic
+python-dotenv
+
+# ------------------------
+# Database
+# ------------------------
+sqlalchemy
+psycopg2-binary
+
+# ------------------------
+# Redis & Background Jobs
+# ------------------------
+redis
+rq
+
+# ------------------------
+# HTTP & Parsing
+# ------------------------
+requests
+httpx
+beautifulsoup4
+lxml
+feedparser
+
+# ------------------------
+# ML / NLP
+# ------------------------
+transformers
+torch
+sentence-transformers
+scikit-learn
+numpy
+
+# ------------------------
+# LLM (Groq)
+# ------------------------
+groq
+
+# ------------------------
+# Utilities
+# ------------------------
+python-dateutil
+
+
+pydantic-settings
+lucide-react

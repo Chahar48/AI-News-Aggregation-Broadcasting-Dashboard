@@ -1,0 +1,69 @@
+version: "3.9"
+
+services:
+
+  # ----------------------------
+  # PostgreSQL Database
+  # ----------------------------
+  postgres:
+    image: postgres:15
+    container_name: news_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: newsuser
+      POSTGRES_PASSWORD: newspass
+      POSTGRES_DB: newsdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+  # ----------------------------
+  # Backend API (FastAPI)
+  # ----------------------------
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: news_backend
+    restart: always
+    environment:
+      DATABASE_URL: postgresql+psycopg2://newsuser:newspass@postgres:5432/newsdb
+      SENDGRID_API_KEY: ""
+      Groq_API_KEY: ""
+    depends_on:
+      - postgres
+    ports:
+      - "8000:8000"
+
+  # ----------------------------
+  # Background Worker (RQ)
+  # ----------------------------
+  worker:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: news_worker
+    restart: always
+    command: ["rq", "worker", "-u", "default", "high", "low"]
+    depends_on:
+      - backend
+    environment:
+      DATABASE_URL: postgresql+psycopg2://newsuser:newspass@postgres:5432/newsdb
+      GROQ_API_KEY: ""
+
+  # ----------------------------
+  # Frontend (Next.js)
+  # ----------------------------
+  frontend:
+    build:
+      context: ../frontend
+    container_name: news_frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
