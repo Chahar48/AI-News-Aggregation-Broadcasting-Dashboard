@@ -95,57 +95,65 @@ Groq (used for content generation & summaries)
 Mocked safely for MVP reliability
 
 
-📂 Project Structure
 ai-news-dashboard/
 ├── backend/
 │   ├── app/
-│   │   ├── main.py
-│   │   ├── config.py
+│   │   ├── main.py                  # FastAPI app entry point
+│   │   ├── config.py                # Environment & app configuration
+│   │   │
 │   │   ├── api/
-│   │   │   ├── v1/
-│   │   │   │   ├── news.py
-│   │   │   │   ├── favorites.py
-│   │   │   │   ├── broadcast.py
-│   │   │   │   └── admin.py
+│   │   │   └── v1/
+│   │   │       ├── news.py           # News listing & retrieval APIs
+│   │   │       ├── favorites.py      # Favorites management APIs
+│   │   │       ├── broadcast.py      # Broadcast execution & logs APIs
+│   │   │       └── admin.py          # Admin & source management APIs
+│   │   │
 │   │   ├── models/
-│   │   │   ├── db.py
-│   │   │   ├── orm_models.py
-│   │   │   └── schemas.py
+│   │   │   ├── db.py                # Database session & engine
+│   │   │   ├── orm_models.py        # SQLAlchemy ORM models
+│   │   │   └── schemas.py           # Pydantic request/response schemas
+│   │   │
 │   │   ├── services/
 │   │   │   ├── ingestion/
-│   │   │   │   ├── fetcher.py
-│   │   │   │   ├── parsers.py
-│   │   │   │   └── schedule.py
-│   │   │   ├── normalizer.py
-│   │   │   ├── deduper.py
-│   │   │   ├── embedder.py
-│   │   │   ├── summarizer.py
-│   │   │   └── broadcaster.py
+│   │   │   │   ├── fetcher.py       # Source fetching abstraction
+│   │   │   │   ├── parsers.py       # RSS / source parsers
+│   │   │   │   └── schedule.py      # Ingestion scheduling logic
+│   │   │   │
+│   │   │   ├── normalizer.py        # Data normalization layer
+│   │   │   ├── deduper.py           # Deduplication logic
+│   │   │   ├── embedder.py          # Embedding / semantic utilities
+│   │   │   ├── summarizer.py        # AI-powered summarization
+│   │   │   └── broadcaster.py       # Broadcast engine (Email / LinkedIn / etc.)
+│   │   │
 │   │   ├── tasks/
-│   │   │   ├── worker.py
-│   │   │   └── jobs.py
+│   │   │   ├── worker.py            # Background worker (Celery/RQ-ready)
+│   │   │   └── jobs.py              # Async / scheduled jobs
+│   │   │
 │   │   └── utils/
-│   │       ├── logger.py
-│   │       └── http_client.py
-│   ├── Dockerfile
-│   ├── requirements.txt
-│  
+│   │       ├── logger.py            # Centralized logging
+│   │       └── http_client.py       # HTTP utilities & retries
+│   │
+│   ├── Dockerfile                  # Backend Docker configuration
+│   └── requirements.txt            # Python dependencies
+│
 ├── frontend/
-│   ├── package.json
-│   ├── next.config.js
-│   ├── src/
-│   │   ├── pages/
-│   │   │   ├── index.tsx
-│   │   │   ├── favorites.tsx
-│   │   │   
-│   │   ├── components/
-│   │   │   ├── NewsCard.tsx
-│   │   │   ├── BroadcastModal.tsx
-│   │   │  
-│   │   └── lib/
-│   │       └── api.ts
-│   └── tailwind.config.js
-└── README.md
+│   ├── package.json                # Frontend dependencies
+│   ├── next.config.js              # Next.js configuration
+│   ├── tailwind.config.js          # Tailwind CSS configuration
+│   └── src/
+│       ├── pages/
+│       │   ├── index.tsx            # News feed page
+│       │   └── favorites.tsx        # Favorites page
+│       │
+│       ├── components/
+│       │   ├── NewsCard.tsx         # News item UI component
+│       │   └── BroadcastModal.tsx   # Broadcast UI modal
+│       │
+│       └── lib/
+│           └── api.ts               # API client & helpers
+│
+└── README.md                       # Project documentation
+
 
 
 🚀 How to Run Locally (Step-by-Step)
