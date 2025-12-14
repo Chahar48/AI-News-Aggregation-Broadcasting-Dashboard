@@ -95,6 +95,7 @@ Groq (used for content generation & summaries)
 Mocked safely for MVP reliability
 
 
+```text
 ai-news-dashboard/
 ├── backend/
 │   ├── app/
@@ -153,6 +154,8 @@ ai-news-dashboard/
 │           └── api.ts               # API client & helpers
 │
 └── README.md                       # Project documentation
+```
+
 
 
 🚀 How to Run Locally (Step-by-Step)
