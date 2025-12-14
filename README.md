@@ -123,7 +123,7 @@ ai-news-dashboard/
 │   │   │   ├── deduper.py           # Deduplication logic
 │   │   │   ├── embedder.py          # Embedding / semantic utilities
 │   │   │   ├── summarizer.py        # AI-powered summarization
-│   │   │   └── broadcaster.py       # Broadcast engine (Email / LinkedIn / etc.)
+│   │   │   └── broadcaster.py       # Broadcast engine
 │   │   │
 │   │   ├── tasks/
 │   │   │   ├── worker.py            # Background worker (Celery/RQ-ready)
@@ -153,7 +153,6 @@ ai-news-dashboard/
 │           └── api.ts               # API client & helpers
 │
 └── README.md                       # Project documentation
-
 
 
 🚀 How to Run Locally (Step-by-Step)
